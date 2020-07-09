@@ -1,25 +1,27 @@
+body {
+  margin: 1vw;
+  background: skyblue;
+}
+
 .board {
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
   width: 80vw;
-  /* min-height: 15vh; */
   height: 100%;
   border: 2px black solid;
   border-radius: 5px;
   margin: 2px 0;
   margin: auto;
-  position: relative;
-  top: 2vh;
-  /* padding: 5vh 2vw; */
+  transition: height .3s;
+}
+
+@media screen and (max-width: 450px) {
+  .board {
+    width: 100%;
+  }
 }
 
 .board:hover {
-  transform: scaleY(1.1);
-  transform: scaleX(1.05);
-  transition: transform .3s;
   z-index: 99;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .board-title {
@@ -37,4 +39,19 @@
   height: 15vh;
   color: black;
   text-align: center
+}
+
+p {
+  margin: 20px;
+  font-size: 1.5em
+}
+
+.exit-button {
+  display: flex;
+  text-decoration: none;
+  display: none;
+  margin: 10px;
+  font-size: 2em;
+  position: absolute;
+  justify-content: flex-end;
 }

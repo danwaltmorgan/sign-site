@@ -13,6 +13,7 @@ export default function App() {
         title={board.title}
         link={board.link}
         route={board.route}
+        key={board.title}
       />
     )
   })
