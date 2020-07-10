@@ -1,10 +1,14 @@
 import React from 'react'
-
 import {
   BrowserRouter as Router,
   Route,
   Link,
+  Switch
 } from 'react-router-dom'
+import {
+  TransitionGroup,
+  CSSTransition
+} from "react-transition-group"
 
 export default function Board(props) {
 
@@ -13,9 +17,6 @@ export default function Board(props) {
 
     let exit = document.getElementById(`exit${props.title}`)
     exit.style.display = "flex"
-
-    // console.log(e.target.disabled)
-
   }
 
   function handleExit(e) {
@@ -42,14 +43,17 @@ export default function Board(props) {
               className="link"
               id={props.title}
               onClick={e => handleClick(e)}
+              style={{"color": props.color}}
               >{props.title}</Link>
           </div>
-            <Route path="/">
-              <div></div>
-            </Route>
-            <Route path={props.route}>
-              {props.link}
-            </Route>
+          <TransitionGroup>
+            <CSSTransition>
+              <Switch>
+                <Route path={props.route}>{props.link}</Route>
+                <Route path="/"></Route>
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
         </div>
       </Router>
     </div>

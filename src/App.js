@@ -14,6 +14,7 @@ export default function App() {
         link={board.link}
         route={board.route}
         key={board.title}
+        color={board.text}
       />
     )
   })
