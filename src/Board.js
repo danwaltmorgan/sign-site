@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Switch
+  Switch,
+  useLocation
 } from 'react-router-dom'
 import {
   TransitionGroup,
@@ -22,6 +23,8 @@ export default function Board(props) {
   function handleExit(e) {
     e.target.style.display = "none"
   }
+
+  let location = useLocation()
 
   return (
     <div
@@ -47,7 +50,11 @@ export default function Board(props) {
               >{props.title}</Link>
           </div>
           <TransitionGroup>
-            <CSSTransition>
+            <CSSTransition
+              key={location.key}
+              className="fade"
+              timeout={300}
+              >
               <Switch>
                 <Route path={props.route}>{props.link}</Route>
                 <Route path="/"></Route>
