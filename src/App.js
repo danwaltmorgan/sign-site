@@ -12,9 +12,8 @@ export default function App() {
         background={board.color}
         title={board.title}
         link={board.link}
-        route={board.route}
-        key={board.title}
         color={board.text}
+        key={board.title}
       />
     )
   })
