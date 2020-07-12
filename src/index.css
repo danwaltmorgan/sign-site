@@ -39,10 +39,11 @@ body {
   color: black;
   text-align: center;
   margin: 0;
+  transition: all 1s
 }
 
 .page {
-  /* display: none; */
+  display: none;
   visibility: hidden;
   opacity: 0;
   height: 0;

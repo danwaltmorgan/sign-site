@@ -7,10 +7,10 @@ import Gallery from './pages/Gallery'
 import Shop from './pages/Shop'
 
 export default [
-  {color: "orange", text: "aqua", title: "Title", route: "/", link: null},
-  {color: "yellow", text: "black", title: "About", route: "/about", link: <About />},
-  {color: "blue", text: "white", title: "Charity", route: "/charity", link: <Charity />},
-  {color: "white", text: "blue", title: "Shop", route: "/shop", link: <Shop />},
-  {color: "pink", text: "red", title: "Contact", route: "/contact", link: <Contact />},
-  {color: "aqua", text: "black", title: "Gallery", route: "/gallery", link: <Gallery />}
+  {color: "orange", text: "aqua", title: "Title", id: "title", link: null},
+  {color: "yellow", text: "black", title: "About", id: "about", link: <About />},
+  {color: "blue", text: "white", title: "Charity", id: "charity", link: <Charity />},
+  {color: "white", text: "blue", title: "Shop", id: "shop", link: <Shop />},
+  {color: "pink", text: "red", title: "Contact", id: "contact", link: <Contact />},
+  {color: "aqua", text: "black", title: "Gallery", id: "gallery", link: <Gallery />}
 ]
