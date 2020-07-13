@@ -19,11 +19,21 @@ export default function App() {
 
 // Lift props up!!!
 
+  function handleExit(id) {
+    setActive({...active, [id]: false})
+    console.log(active)
+  }
+
   const boards = data.map(board => {
     return (
       <div onClick={() => {
-        setActive({...active, [board.id]: true})
-        console.log(active[board.id])
+        if (active[board.id] === false) {
+          setActive({...active, [board.id]: true})
+          // console.log(active[board.id])
+        }
+        // else {
+        //   setActive({...active, [board.id]: false})
+        // }
       }}>
         <Board
         background={board.color}
@@ -32,16 +42,12 @@ export default function App() {
         link={board.link}
         color={board.text}
         key={board.title}
-        // active={active[`${board.id}`]}
         active={active[board.id]}
-        // setActive={() => setActive()}
-        // onClick={() => console.log(active)}
-        >
-          {/* <div> */}
-            {/* <Exit/> */}
-          {/* </div> */}
-        </Board>
-      </div>
+
+        onExit={handleExit}
+
+      />
+    </div>
     )
   })
 

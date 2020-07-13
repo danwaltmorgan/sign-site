@@ -5,7 +5,7 @@ const container = {
   display: "none",
   position: "relative",
   width: "40px",
-  height: "7px",
+  height: "40px",
   // display: "flex",
   alignItems: "center",
   top: "30px",
@@ -16,7 +16,7 @@ const cross = {
   // display: "none",
   position: "absolute",
   width: "0",
-  height: "100%",
+  height: "15%",
   background: "black",
   transition: "all 1s",
 }
@@ -48,11 +48,19 @@ export default function Exit(props) {
         right.style.transform = "rotate(-45deg)"
       }, 700)
     }
+    else if (!props.active) {
+      const container = document.querySelector(`.${props.id}container`)
+      container.style.display = "none"
+    }
   })
 
 
   return (
-      <div style={container} className={props.id + "container"}>
+      <div
+        style={container}
+        className={props.id + "container"}
+        onClick={props.onExit}
+        >
         <div
           className={props.id + "cross"}
           style={cross}

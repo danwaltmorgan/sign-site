@@ -26,20 +26,27 @@ export default function Board(props) {
     }, 300)
   }
 
-  function handleExit(e) {
-    e.target.style.display = "none"
+  function handleExit() {
+    // console.log(props.id)
+    props.onExit(props.id)
   }
+
 
   return (
     <div
       className="board"
       id={props.title}
       style={{background: `${props.background}`}}
+      // onClick={props.onExit}
     >
-      <Exit
-        active={props.active}
-        id={props.id + "exit"}
-      />
+      <div
+        onClick={handleExit}
+        >
+        <Exit
+          active={props.active}
+          id={props.id + "exit"}
+        />
+      </div>
       <h1
         style={{"color": props.color}}
         className="title"
