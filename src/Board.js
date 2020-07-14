@@ -1,34 +1,43 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import Exit from './Exit'
 
 export default function Board(props) {
 
+  useEffect(() => {
+    if (!props.active) {
+      handleMin()
+    }
+  })
+
+  function handleMin() {
+    if (props.id === "title") return
+    console.log("min")
+    let page = document.getElementById(props.title + "page")
+    let board = document.getElementById(props.title)
+    page.style.height = "0"
+    page.style.display = "none"
+    page.style.opacity = "0"
+    page.style.visibility = "none"
+    board.style.height = "15vh"
+  }
+
   function handleClick(e) {
     if (props.title === "Title" || props.active) return
 
-
     let page = document.getElementById(props.title + "page")
     let board = document.getElementById(props.title)
-    // let exit = document.querySelector(`.${props.id}container`)
     let margin = 70;
 
     page.style.display = "block"
     page.style.height = "auto" // allows for defining the page height
     let pageHeight = page.offsetHeight
     let boardHeight = board.offsetHeight
-    // let exitHeight = exit.offsetHeight
 
     board.style.height = pageHeight + boardHeight + margin + "px"
-    // console.log(height)
-    setInterval(() => {
+    setTimeout(() => {
       page.style.visibility = "visible"
       page.style.opacity = "1";
     }, 300)
-  }
-
-  function handleExit() {
-    // console.log(props.id)
-    props.onExit(props.id)
   }
 
 
@@ -37,14 +46,14 @@ export default function Board(props) {
       className="board"
       id={props.title}
       style={{background: `${props.background}`}}
-      // onClick={props.onExit}
     >
       <div
-        onClick={handleExit}
+        onClick={() => props.handleExit(props.id)}
         >
         <Exit
           active={props.active}
           id={props.id + "exit"}
+          color={props.color}
         />
       </div>
       <h1

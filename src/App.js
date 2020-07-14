@@ -1,8 +1,7 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState } from 'react'
 import Board from './Board'
 import './index.css'
 import data from './data' // contains styling information about the boards
-import Exit from './Exit'
 
 
 export default function App() {
@@ -16,25 +15,23 @@ export default function App() {
     gallery: false
   }
 )
-
-// Lift props up!!!
-
   function handleExit(id) {
     setActive({...active, [id]: false})
     console.log(active)
   }
 
+  function handleActive(id) {
+    if (active[id] === false)
+      setActive({...active, [id]: true})
+  }
+
+
   const boards = data.map(board => {
     return (
-      <div onClick={() => {
-        if (active[board.id] === false) {
-          setActive({...active, [board.id]: true})
-          // console.log(active[board.id])
-        }
-        // else {
-        //   setActive({...active, [board.id]: false})
-        // }
-      }}>
+      <div
+        id={board.id}
+        onClick={(e) => handleActive(board.id)}
+      >
         <Board
         background={board.color}
         title={board.title}
@@ -43,11 +40,10 @@ export default function App() {
         color={board.text}
         key={board.title}
         active={active[board.id]}
-
-        onExit={handleExit}
-
-      />
-    </div>
+        handleExit={handleExit}
+        clicked={board.id}
+        />
+      </div>
     )
   })
 
