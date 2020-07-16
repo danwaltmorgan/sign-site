@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './exit.css'
 
 
 export default function Exit(props) {
-
-
   useEffect(() => {
     if (props.active && props.id !== "titleexit") {
       const crosses = document.querySelectorAll(`.${props.id}cross`)
@@ -31,24 +29,44 @@ export default function Exit(props) {
       const crosses = document.querySelectorAll(`.${props.id}cross`)
       const left = document.querySelector(`#${props.id}left`)
       const right = document.querySelector(`#${props.id}right`)
-      left.style.transform = "rotate(-720deg)"
-      right.style.transform = "rotate(-720deg)"
+      left.style.transform = "rotate(0deg)"
+      right.style.transform = "rotate(0deg)"
 
       setTimeout(() => {
         crosses.forEach(cross => {
           cross.style.width = "0"
         })
         container.style.height = "0"
-      }, 100)
+      }, 250)
     }
   })
 
+
+  function handleOver() {
+    const crosses = document.querySelectorAll(`.${props.id}cross`)
+
+    crosses.forEach(cross => {
+      cross.style.background = "indianred"
+    })
+
+  }
+
+  function handleLeave() {
+    const crosses = document.querySelectorAll(`.${props.id}cross`)
+
+    crosses.forEach(cross => {
+      cross.style.background = props.color
+    })
+  }
 
   return (
       <div
         className={props.id + "container container"}
         id={props.id + "container"}
-        onClick={props.onExit}
+        onClick={props.handleExit}
+        onMouseOver={handleOver}
+        onMouseOut={handleLeave}
+
         >
         <div
           className={props.id + "cross cross"}

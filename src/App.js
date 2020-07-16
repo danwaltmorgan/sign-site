@@ -6,23 +6,28 @@ import data from './data' // contains styling information about the boards
 
 export default function App() {
 
-  const [active, setActive] = useState(
-    {
+  const defaultActive = {
     about: false,
     charity: false,
     shop: false,
     contact: false,
     gallery: false
   }
-)
+
+const [active, setActive] = useState(defaultActive)
+const [clicked, setClicked] = useState(null)
+
   function handleExit(id) {
     setActive({...active, [id]: false})
-    console.log(active)
   }
 
   function handleActive(id) {
+    if (id === "title") {
+      setActive(defaultActive)
+    }
     if (active[id] === false)
       setActive({...active, [id]: true})
+      setClicked(id)
   }
 
 
@@ -30,7 +35,9 @@ export default function App() {
     return (
       <div
         id={board.id}
-        onClick={(e) => handleActive(board.id)}
+        onClick={(e) => {
+          handleActive(board.id)
+        }}
       >
         <Board
         background={board.color}
@@ -41,7 +48,7 @@ export default function App() {
         key={board.title}
         active={active[board.id]}
         handleExit={handleExit}
-        clicked={board.id}
+        clicked={clicked}
         />
       </div>
     )
@@ -50,6 +57,9 @@ export default function App() {
   return (
     <div>
       {boards}
+      {/* <button
+        onClick={handleCloseAll}
+        >Test</button> */}
     </div>
   )
 }

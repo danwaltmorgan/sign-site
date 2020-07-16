@@ -7,11 +7,13 @@ export default function Board(props) {
     if (!props.active) {
       handleMin()
     }
+    if (props.active && props.clicked === props.id) {
+      handleMax()
+    }
   })
 
   function handleMin() {
     if (props.id === "title") return
-    console.log("min")
     let page = document.getElementById(props.title + "page")
     let board = document.getElementById(props.title)
     page.style.height = "0"
@@ -21,9 +23,7 @@ export default function Board(props) {
     board.style.height = "15vh"
   }
 
-  function handleClick(e) {
-    if (props.title === "Title" || props.active) return
-
+  function handleMax() {
     let page = document.getElementById(props.title + "page")
     let board = document.getElementById(props.title)
     let margin = 70;
@@ -40,26 +40,21 @@ export default function Board(props) {
     }, 300)
   }
 
-
   return (
     <div
       className="board"
       id={props.title}
       style={{background: `${props.background}`}}
     >
-      <div
-        onClick={() => props.handleExit(props.id)}
-        >
         <Exit
           active={props.active}
           id={props.id + "exit"}
           color={props.color}
+          handleExit={() => props.handleExit(props.id)}
         />
-      </div>
       <h1
         style={{"color": props.color}}
         className="title"
-        onClick={(e) => handleClick(e)}
         >{props.title}</h1>
       <div
         style={{"color": props.color}}

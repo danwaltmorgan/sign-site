@@ -7,23 +7,24 @@
   align-items: center;
   top: 30px;
   left: 90%;
-  transition: all 1s;
+  transition: all .75s;
+  /* transition: transform .5s; */
   cursor: pointer;
 }
+
+/* .container:hover {
+  transform: scale(1.2)
+} */
 
 .cross {
   position: absolute;
   width: 0;
   height: 15%;
   background: black;
-  transition: all 1s;
+  transition-duration: 1s;
+  transition-property: transform width;
 }
 
-/* .cross:hover {
+.active-cross {
   background: red;
-} */
-
-.test {
-  /* background: red; */
-  /* color: red; */
 }
