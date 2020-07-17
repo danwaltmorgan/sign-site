@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './exit.css'
 
 
@@ -7,14 +7,12 @@ export default function Exit(props) {
     if (props.active && props.id !== "titleexit") {
       const crosses = document.querySelectorAll(`.${props.id}cross`)
       const container = document.querySelector(`#${props.id}container`)
-
       container.style.height = "40px"
 
       setTimeout(() => {
         crosses.forEach(cross => {
           cross.style.width = "100%"
         })
-
       }, 100)
 
       setTimeout(() => {
@@ -33,11 +31,13 @@ export default function Exit(props) {
       right.style.transform = "rotate(0deg)"
 
       setTimeout(() => {
+        container.style.height = "0"
+      }, 250)
+      setTimeout(() => {
         crosses.forEach(cross => {
           cross.style.width = "0"
         })
-        container.style.height = "0"
-      }, 250)
+      }, 0)
     }
   })
 

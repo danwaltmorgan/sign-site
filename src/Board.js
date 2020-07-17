@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import Exit from './Exit'
 
+
 export default function Board(props) {
+
 
   useEffect(() => {
     if (!props.active) {
@@ -12,15 +14,22 @@ export default function Board(props) {
     }
   })
 
+
   function handleMin() {
-    if (props.id === "title") return
+    if (props.id === "title") {
+      return
+    }
     let page = document.getElementById(props.title + "page")
     let board = document.getElementById(props.title)
+
     page.style.height = "0"
     page.style.display = "none"
     page.style.opacity = "0"
     page.style.visibility = "none"
     board.style.height = "15vh"
+    setTimeout(() => {
+      board.classList.add("board-active")
+    }, 500)
   }
 
   function handleMax() {
@@ -28,8 +37,12 @@ export default function Board(props) {
     let board = document.getElementById(props.title)
     let margin = 70;
 
+    board.classList.remove("board-active")
+
+
     page.style.display = "block"
     page.style.height = "auto" // allows for defining the page height
+
     let pageHeight = page.offsetHeight
     let boardHeight = board.offsetHeight
 
@@ -40,11 +53,15 @@ export default function Board(props) {
     }, 300)
   }
 
+
+
+
   return (
     <div
       className="board"
       id={props.title}
       style={{background: `${props.background}`}}
+      // onMouseOver={(e) => handleHover(e)}
     >
         <Exit
           active={props.active}

@@ -14,8 +14,9 @@ export default function App() {
     gallery: false
   }
 
-const [active, setActive] = useState(defaultActive)
-const [clicked, setClicked] = useState(null)
+  const [active, setActive] = useState(defaultActive)
+  const [clicked, setClicked] = useState(null)
+
 
   function handleExit(id) {
     setActive({...active, [id]: false})
@@ -23,7 +24,11 @@ const [clicked, setClicked] = useState(null)
 
   function handleActive(id) {
     if (id === "title") {
-      setActive(defaultActive)
+      if (active === defaultActive) {
+        alert("Click here to close all tabs")
+      } else {
+        setActive(defaultActive)
+      }
     }
     if (active[id] === false)
       setActive({...active, [id]: true})
@@ -38,6 +43,7 @@ const [clicked, setClicked] = useState(null)
         onClick={(e) => {
           handleActive(board.id)
         }}
+        key={board.id + "-div-key"}
       >
         <Board
         background={board.color}
@@ -45,7 +51,7 @@ const [clicked, setClicked] = useState(null)
         id={board.id}
         link={board.link}
         color={board.text}
-        key={board.title}
+        key={board.id + "key"}
         active={active[board.id]}
         handleExit={handleExit}
         clicked={clicked}

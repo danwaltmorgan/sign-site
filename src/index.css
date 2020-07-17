@@ -13,20 +13,13 @@ body {
   margin: auto;
 }
 
-@media screen and (max-width: 450px) {
-  .board {
-    width: 95%;
-  }
+.board-active {
+  transition: transform .5s
 }
-
-.board:hover {
+.board-active:hover {
   z-index: 99;
-  /* cursor: pointer; */
-}
-
-.board-title {
-  text-align: center;
-  font-size: 3em;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .title {
@@ -37,7 +30,6 @@ body {
   text-decoration: none;
   width: 100%;
   height: 15vh;
-  color: black;
   text-align: center;
   margin: 0;
   transition: all 1s
@@ -56,12 +48,22 @@ p {
   font-size: 1.5em
 }
 
-.exit-button {
-  display: flex;
-  text-decoration: none;
-  display: none;
-  margin: 10px;
-  font-size: 2em;
-  position: absolute;
-  justify-content: flex-end;
+#Title {
+  cursor: pointer;
+  transition: background 1s;
+}
+#Title:hover {
+  background: orangered !important;
+}
+
+@media screen and (max-width: 450px) {
+  .board {
+    width: 95%;
+  }
+  .board-active:hover {
+    transform: scale(1)
+  }
+  #Title:hover {
+    background: orange !important;
+  }
 }
